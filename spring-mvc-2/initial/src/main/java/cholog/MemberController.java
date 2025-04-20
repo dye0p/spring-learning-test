@@ -21,7 +21,7 @@ public class MemberController {
     private final AtomicLong index = new AtomicLong(1);
 
     @PostMapping("/members")
-    public ResponseEntity<Void> create(@RequestBody Member member) {
+    public ResponseEntity<Void> create(@RequestBody Member member) { //요청 바디의 Json 본문을 객체로 역직렬화 한다.
         Member newMember = Member.toEntity(member, index.getAndIncrement());
         members.add(newMember);
         return ResponseEntity.created(URI.create("/members/" + newMember.getId())).build();
