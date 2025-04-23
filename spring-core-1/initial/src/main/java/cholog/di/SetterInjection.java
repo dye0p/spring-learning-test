@@ -11,6 +11,11 @@ public class SetterInjection {
     Setter Injection으로 InjectionBean 주입받기
      */
 
+    @Autowired
+    public void setInjectionBean(final InjectionBean injectionBean) {
+        this.injectionBean = injectionBean;
+    }
+
     public String sayHello() {
         return injectionBean.hello();
     }
