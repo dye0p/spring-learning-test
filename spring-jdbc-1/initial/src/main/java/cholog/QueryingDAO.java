@@ -42,14 +42,11 @@ public class QueryingDAO {
     public Customer findCustomerById(Long id) {
         String sql = "select id, first_name, last_name from customers where id = ?";
         return jdbcTemplate.queryForObject(sql,
-                (resultSet, rowNum) -> {
-                    Customer customer = new Customer(
-                            resultSet.getLong("id"),
-                            resultSet.getString("first_name"),
-                            resultSet.getString("last_name")
-                    );
-                    return customer;
-                },
+                (resultSet, rowNum) -> new Customer(
+                        resultSet.getLong("id"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name")
+                ),
                 id);
     }
 
