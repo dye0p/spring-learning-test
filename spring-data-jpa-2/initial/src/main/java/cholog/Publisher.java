@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import java.util.Set;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class Publisher {
@@ -14,8 +16,12 @@ public class Publisher {
     private Long id;
     private String name;
 
+    @OneToMany(mappedBy = "publisher") //연관관계의 주인이 아님
+    private List<Book> books;
+
     public Publisher(String name) {
         this.name = name;
+        this.books = new ArrayList<>();
     }
 
     public Publisher() {
@@ -30,10 +36,11 @@ public class Publisher {
     }
 
     public void addBook(Book book) {
-
+        this.books.add(book);
     }
 
-    public Set<Book> getBooks() {
-        return null;
+    public List<Book> getBooks() {
+        return Collections.unmodifiableList(books);
     }
+
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Person {
@@ -11,6 +12,9 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @OneToOne(mappedBy = "person") //양방향 매핑관계 연관관계 주인 설정
+    private Author author;
 
     public Person() {
 
@@ -29,6 +33,6 @@ public class Person {
     }
 
     public Author getAuthor() {
-        return null;
+        return this.author;
     }
 }
