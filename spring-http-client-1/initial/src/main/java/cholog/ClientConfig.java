@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ClientConfig {
+
     @Bean
     public TodoClientWithRestTemplate todoClient(RestTemplateBuilder restTemplateBuilder) {
         RestTemplate restTemplate = restTemplateBuilder.build();
